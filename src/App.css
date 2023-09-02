@@ -1,38 +1,233 @@
-.App {
-  text-align: center;
+*{
+    padding: 0;
+    margin: 0;
+}
+.hero_wrapper{
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+}
+.hero_wrapper::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/hero.svg');
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: cover;
+    z-index: -2;
+}
+.hero_container{
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 80px 0 20px;
+    /* background-color: antiquewhite; */
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 40px;
+}
+.hero_container h1{
+    font-size: 3.5rem;
+    font-family: 'Roboto';
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+.hero_container p{
+    font-size: 1.3rem;
+    line-height: 29px;
+    color: rgb(159, 159, 159);
+}
+.hero_container article:last-child{
+    justify-self: end;
+}
+.hero_container .signIn{
+    padding: 10px 28px;
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    border: transparent;
+    margin-top: 40px;
+    cursor: pointer;
+    letter-spacing: 1px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.topNav{
+    max-width: 80vw;
+    padding: 0;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;   
+    align-items: center;
+    /* justify-content: space-between; */
+}
+.nav_links_container{
+    display: flex;
+    list-style-type: none;
+    justify-self: center;
+    justify-content: space-around;
+    height: 100%;
+}
+.nav_links_container li{
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    /* background-color: antiquewhite; */
+    align-self: center;
+    line-height: 40px;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+.signIn{
+    padding: 10px 28px;
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    border: transparent;
+    cursor: pointer;
+    letter-spacing: 1px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.subMenuContainer{
+    position: fixed;
+    background-color: white;
+    transform: translateX(-50%);
+    padding: 20px 50px;
+    visibility: hidden;
+    z-index: 5;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.showSuBMenu{
+    visibility: visible;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.subMenuContainer::before{
+    content: '';
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid white;
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.subMenuItem_list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style-type: none;
+    padding-block: 18px;
+    gap: 24px;
+}
+
+.subMenuItem_list li{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: rgb(135, 106, 214);
+    cursor: pointer;
+}
+
+.hamburger_icon{
+    display: none;
+}
+
+.sideBarMenu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    visibility: hidden;
+    transform: scale(0);
+    transition: all 0.4s ease-in-out;
+}
+
+@media screen and (max-width: 996px) {
+    .topNav{
+        grid-template-columns: 1fr 1fr;
+    }
+    .hamburger_icon{
+        display: block;
+        justify-self: end;  
+        border: transparent;
+        background: transparent;
+        font-size: 26px;
+        cursor: pointer;
+    }
+    .nav_links_container,.topNav .signIn{
+        display: none;
+    }
+    .hero_container article:last-child{
+        display: none;
+    }
+    .hero_container{
+        display: block; 
+    }
+    .hero_container h1{
+        font-size: 2rem;
+    }
+    .hero_container p{
+        font-size: 1.1rem;
+    }
+    nav{
+        padding: 10px 0;
+    }
+    .showSideBar{
+        visibility: visible;
+        transform: scale(1);
+    }
+    .sideBar_links{
+        /* display: flex; */
+        /* justify-content: space-between; */
+        background-color: white;
+        height:100%;
+    }
+    .sideBar_header{
+        /* width: 100%; */
+        display: flex;
+        justify-content: space-between;
+        padding: 25px 30px;
+    }
+    .mobMenu{
+        padding: 20px 30px;
+    }
+    .mobMenu h4{
+        padding-block: 15px;
+    }
+    .subListItems{
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 8px;
+    }
+    .subListItems li{
+       display: flex;
+       align-items: center;
+    }
+    .subListItems li span{
+       margin: 0 4px;   
+    }
+    .subListItems li span:first-child{
+        color: rgb(74, 120, 211);
+    }
+    .subListItems li span:last-child{
+        color: rgb(136, 138, 140);
+    }
 }
